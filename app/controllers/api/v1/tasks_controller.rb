@@ -1,5 +1,5 @@
 class Api::V1::TasksController < ApplicationController
-  before_action :set_post, only: [:show, :update, :destroy]
+  before_action :set_task, only: [:show, :update, :destroy]
   def index
     tasks = Task.order(created_at: :desc)
     render json: { status: 'SUCCESS', message: 'Loaded tasks', data: tasks }
@@ -38,6 +38,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description)
+    params.require(:task).permit(:id, :title, :description, :created_at, :updated_at)
   end
 end
