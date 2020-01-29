@@ -10,7 +10,7 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    task = Task.new(task_params)
+    task = Task.new(title: task_params[:title], description: task_params[:description])
     if task.save
       render json: { status: 'SUCCESS', data: task }
     else
